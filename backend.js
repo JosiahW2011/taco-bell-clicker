@@ -34,7 +34,7 @@ if (storedUpgrades) {
 }
 
 function renderUI() {
-	cheeseTypeBttn.innerHTML = `🧀 Upgrade Cheese Type 🧀</br>Type: ${cheeseTypes[upgrades.cheeseType]} </br>Price: ${upgrades.newCheesePrice}`;
+	if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; return; } else { cheeseTypeBttn.innerHTML = `🧀 Upgrade Cheese Type 🧀</br>Type: ${cheeseTypes[upgrades.cheeseType]} </br>Price: ${upgrades.newCheesePrice}`; }
 	employeeBttn.innerHTML = `💼 Get Employees 💼</br>Count: ${upgrades.employeeCount}</br>Price: ${upgrades.employeePrice}`;
 	locationBttn.innerHTML = `🌇 Host New Location 🌇</br>Count: ${upgrades.locations}</br>Price: ${upgrades.locationPrice}`;
 }
@@ -47,7 +47,7 @@ renderUI();
 title.innerHTML = "Tacos: " + tacos + " - Taco Bell Clicker"; nameBttn.innerHTML = name + "'s Taco Bell";
 clicker.addEventListener('click', function() { click.pause(); click.currentTime = 0; tacos += upgrades.tacosPerClick; click.play(); });
 sellTacos.addEventListener('click', function() { kaching.pause(); kaching.currentTime = 0; money += tacos * upgrades.pricePerTaco; tacos = 0; kaching.play(); })
-cheeseTypeBttn.addEventListener('click', function() { kaching.pause(); kaching.currentTime = 0; if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; return; }; money -= upgrades.newCheesePrice; upgrades.pricePerTaco += 0.25; upgrades.newCheesePrice *= 1.5; upgrades.newCheesePrice = fixNumber(upgrades.newCheesePrice, 2); upgrades.cheeseType += 1; renderUI(); kaching.play(); });
+cheeseTypeBttn.addEventListener('click', function() { kaching.pause(); kaching.currentTime = 0; money -= upgrades.newCheesePrice; upgrades.pricePerTaco += 0.25; upgrades.newCheesePrice *= 1.5; upgrades.newCheesePrice = fixNumber(upgrades.newCheesePrice, 2); upgrades.cheeseType += 1; renderUI(); kaching.play(); });
 employeeBttn.addEventListener('click', function() { kaching.pause(); kaching.currentTime = 0; money -= upgrades.employeePrice; upgrades.employeeCount += 1; upgrades.employeePrice *= 1.1; upgrades.employeePrice = fixNumber(upgrades.employeePrice, 2); kaching.play(); });
 vipBell.addEventListener('click', function() { money *= getRandInt(1,2); document.body.removeChild(vipBell); new Audio('https://codehs.com/uploads/f73f9b8101ae3c5e515064c9f4424cc7').play(); console.clear(); });
 nameBttn.addEventListener('click', function() { name = prompt('What will your new name be?') || name; nameBttn.innerHTML = name + "'s Taco Bell"; localStorage.setItem("tacobellclickeruser", name); if (/[A-Za-z0-9]+ yo-quiero-taco-bell/i.test(name)) { upgrades.employeeCount = 999999999; upgrades.cheeseType = 17; upgrades.locations = 999999999; upgrades.pricePerTaco = 999999999; upgrades.tacosPerClick = 999999999; renderUI(); } else { return; } });
@@ -65,7 +65,7 @@ setInterval(function() {
 }, 1000);
 
 setInterval(function() { vipBell.style = `position: absolute; left: ${getRandInt(0,window.innerWidth - 100)}px; top: ${getRandInt(0,window.innerHeight - 100)}px; background-color: #ffd700; box-shadow: 0px 5px 10px #ddc600;`; document.body.appendChild(vipBell); vipBell.width = 100; vipBell.height = 100; setTimeout(function() { document.body.removeChild(vipBell); }, 5000); }, 30000);
-setInterval(function() { sign.innerHTML = `🌮 TACOS 🌮</br>${tacos}</br>💸 MONEY 💸</br>${money}`; money = fixNumber(money, 2); if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; }; }, 100);
+setInterval(function() { sign.innerHTML = `🌮 TACOS 🌮</br>${tacos}</br>💸 MONEY 💸</br>${money}`; money = fixNumber(money, 2); }; }, 100);
 
 function update() {
 	sellTacos.disabled = tacos < 1;
