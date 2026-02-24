@@ -11,7 +11,7 @@ let money = Number(localStorage.getItem("moneymade")) || 0;
 let cheeseTypes = ['Brie', 'Cambert', 'Velveeta', 'Canned', 'American', 'Cheddar', 'Gouda', 'Parmesan', 'Romano', 'Swiss', 'Emmental', 'Grass-Fed', 'Raw', 'Goat', 'Feta', 'Mozzarella', 'Cottage', 'Ricotta'];
 
 const kaching = new Audio('https://codehs.com/uploads/b47b7fad6a735900057cd7614f924ffe');
-const click = new Audio('https://www.myinstants.com/en/instant/wii-click-sound-34537/?utm_source=copy&utm_medium=share');
+const click = new Audio('hhttps://codehs.com/uploads/9152e26148c499b4a497148f24a0165e');
 const vipBell = new Image(); vipBell.src = "https://codehs.com/uploads/d91ea99659e72eb7ebab1bccfe66eb8a";
 vipBell.style = "position: absolute;"
 
