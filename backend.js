@@ -65,7 +65,7 @@ setInterval(function() {
 }, 1000);
 
 setInterval(function() { vipBell.style = `position: absolute; left: ${getRandInt(0,window.innerWidth - 100)}px; top: ${getRandInt(0,window.innerHeight - 100)}px; background-color: #ffd700; box-shadow: 0px 5px 10px #ddc600;`; document.body.appendChild(vipBell); vipBell.width = 100; vipBell.height = 100; setTimeout(function() { document.body.removeChild(vipBell); }, 5000); }, 30000);
-setInterval(function() { sign.innerHTML = `🌮 TACOS 🌮</br>${tacos}</br>💸 MONEY 💸</br>${money}`; money = fixNumber(money, 2); if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; }; }, 100);
+setInterval(function() { renderUI(); sign.innerHTML = `🌮 TACOS 🌮</br>${tacos}</br>💸 MONEY 💸</br>${money}`; money = fixNumber(money, 2); if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; }; }, 100);
 
 function update() {
 	sellTacos.disabled = tacos < 1;
