@@ -76,7 +76,7 @@ function update() {
 	cheeseTypeBttn.disabled = upgrades.cheeseType > cheeseTypes.length - 1 || money < upgrades.newCheesePrice;
 	employeeBttn.disabled = money < upgrades.employeePrice;
 	locationBttn.disabled = money < upgrades.locationPrice;
-	countriesBttn.disabled = money < upgrades.countryPrice || upgrades.countries === 195;
+	countriesBttn.disabled = money < upgrades.countryPrice || upgrades.countries >= 195;
 	requestAnimationFrame(update);
 }
 
