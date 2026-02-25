@@ -1,7 +1,7 @@
 // Labels and buttons
 let title = document.getElementById('title'); let clicker = document.getElementById('clicker'); let sign = document.getElementById('sign');
 let sellTacos = document.getElementById('sellTacos'); let cheeseTypeBttn = document.getElementById('cheeseType'); let employeeBttn = document.getElementById('employees');
-let locationBttn = document.getElementById('locations'); let reset = document.getElementById('reset');
+let locationBttn = document.getElementById('locations'); let countriesBttn = document.getElementById('countries'); let reset = document.getElementById('reset');
 
 // Main Variables
 let nameBttn = document.getElementById('name');
@@ -29,7 +29,9 @@ if (storedUpgrades) {
 		employeeCount: 0,
 		employeePrice: 250,
 		locations: 0,
-		locationPrice: 1000
+		locationPrice: 1000,
+		countries: 0,
+		countryPrice: 1000000
 	};
 }
 
@@ -52,6 +54,7 @@ employeeBttn.addEventListener('click', function() { kaching.pause(); kaching.cur
 vipBell.addEventListener('click', function() { money *= getRandInt(1,2); document.body.removeChild(vipBell); new Audio('https://codehs.com/uploads/f73f9b8101ae3c5e515064c9f4424cc7').play(); console.clear(); });
 nameBttn.addEventListener('click', function() { name = prompt('What will your new name be?') || name; nameBttn.innerHTML = name + "'s Taco Bell"; localStorage.setItem("tacobellclickeruser", name); if (/[A-Za-z0-9]+ yo-quiero-taco-bell/i.test(name)) { upgrades.employeeCount = 999999999; upgrades.cheeseType = 17; upgrades.locations = 999999999; upgrades.pricePerTaco = 999999999; upgrades.tacosPerClick = 999999999; renderUI(); } else { return; } });
 locationBttn.addEventListener('click', function() {  kaching.pause(); kaching.currentTime = 0; money -= upgrades.locationPrice; upgrades.locationPrice *= 5; upgrades.locations += 1; upgrades.tacosPerClick *= 10 * getRandInt(1,4); renderUI(); kaching.play(); });
+countriesBttn.addEventListener('click', function() { kaching.pause(); kaching.currentTime = 0; money -= upgrades.countryPrice; upgrades.countryPrice *= 10; upgrades.countries += 1; upgrades.pricePerTaco *= 25; renderUI(); kaching.play(); });
 reset.addEventListener('click', function() { let sure = prompt('Are you sure you desire to continue? Type "yes" or "y" if so. Click cancel to quit the operation, or leave the input space blank.'); if (sure === null) { return; } else if (sure.toLowerCase() === "yes" || sure.toLowerCase() === "y") { saving = false; localStorage.removeItem("tacoscount"); localStorage.removeItem("moneymade"); localStorage.removeItem("tacobellclickerupgrades"); localStorage.removeItem("tacobellclickeruser"); location.reload(); } });
 
 setInterval(function() {
@@ -72,6 +75,7 @@ function update() {
 	cheeseTypeBttn.disabled = upgrades.cheeseType > cheeseTypes.length - 1 || money < upgrades.newCheesePrice;
 	employeeBttn.disabled = money < upgrades.employeePrice;
 	locationBttn.disabled = money < upgrades.locationPrice;
+	countriesBttn.disabled = money < upgrades.countryPrice || upgrades.countries === 195;
 	requestAnimationFrame(update);
 }
 
