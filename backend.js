@@ -36,9 +36,10 @@ if (storedUpgrades) {
 }
 
 function renderUI() {
-	if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; return; } else { cheeseTypeBttn.innerHTML = `🧀 Upgrade Cheese Type 🧀</br>Type: ${cheeseTypes[upgrades.cheeseType]} </br>Price: ${upgrades.newCheesePrice}`; }
+	if (upgrades.cheeseType > cheeseTypes.length - 1) { cheeseTypeBttn.innerHTML = "🧀 HIT BEST CHEESE TYPE: Ricotta 🧀"; cheeseTypeBttn.disabled = true; } else { cheeseTypeBttn.innerHTML = `🧀 Upgrade Cheese Type 🧀</br>Type: ${cheeseTypes[upgrades.cheeseType]} </br>Price: ${upgrades.newCheesePrice}`; }
 	employeeBttn.innerHTML = `💼 Get Employees 💼</br>Count: ${upgrades.employeeCount}</br>Price: ${upgrades.employeePrice}`;
 	locationBttn.innerHTML = `🌇 Host New Location 🌇</br>Count: ${upgrades.locations}</br>Price: ${upgrades.locationPrice}`;
+	if (upgrades.cheeseType > cheeseTypes.length - 1) { countriesBttn.innerHTML = "🌎 YOU BOUGHT ALL 195 COUNTRIES!!! 🌎"; countriesBttn.disabled = true; } else { countriesBttn.innerHTML = `🌎 Buy Countries 🌎</br>Countries: ${upgrades.countries}</br>Price: ${upgrades.countryPrice}`; }
 }
 
 function getRandInt(low,high) { let min = Math.ceil(low); let max = Math.floor(high); return Math.floor(Math.random() * (max - min + 1)) + min; }
